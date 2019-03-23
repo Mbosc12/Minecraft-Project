@@ -75,6 +75,8 @@ public class Vue extends JFrame implements MouseListener, ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		JButton source = (JButton)e.getSource();
+		System.out.println(source.getName());
 		this.inv.setVisible(true);
 		
 	}
