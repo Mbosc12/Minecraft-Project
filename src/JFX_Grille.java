@@ -1,13 +1,8 @@
-import java.awt.BorderLayout;
-
 import javax.print.DocFlavor.URL;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Dimension2D;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,42 +13,29 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class Test extends Application {
+public class JFX_Grille extends Application {
 
 	public BorderPane top = new BorderPane();
 	public BorderPane bottom = new BorderPane();
 	public GridPane g1 = new GridPane();
 	
+	public Button resultat;
+	public Button inventaire;
+	
 	final FlowPane barreDuBas = new FlowPane(); 
 	
-	public static void main(String[] args) {
-		Scene scene = new Scene(new Group(), 500, 400);
-		
-		scene.getStylesheets().add("application.css");
-		
-		
-		Application.launch(Test.class, args);
-
-		Test v = new Test();
-
-		Block buche = new Block(2, "Buche", true, new Craft(4));
-		Block planche = new Block(0, "Planche", false, new Craft(4));
-		planche.craft.setCraft("---", "-#-", "---");
-		planche.craft.setElement(1, 1, buche);
-	}
 	@Override
 	public void start(Stage primaryStage) {
+		
 		Group root = new Group();
 		Scene scene = new Scene(root, 500, 500);
 		primaryStage.setScene(scene);
 		String css = getClass().getResource("application.css").toExternalForm();
 		scene.getStylesheets().add(css);
-		
-		/*java.net.URL cssURL = getClass().getResource("application.css");
-		if (cssURL != null) {
-		  scene.getStylesheets().add(cssURL.toExternalForm());
-		}*/
-
+	}
+	
+	public JFX_Grille() {
+		//Grille
 		int a=1;
 		for (int i = 1; i<4; i++) {
 			for (int j = 0; j<3; j++) {
@@ -77,12 +59,8 @@ public class Test extends Application {
 			}
 		}
 		
-		 
-
-		
-		
-		
-		Button resultat = new Button();
+		//Resultat
+		resultat = new Button();
 		resultat.setText("Résultat");
 		resultat.setTextFill(null);
 		resultat.setPrefSize(80, 80);
@@ -94,12 +72,13 @@ public class Test extends Application {
 				System.out.println(resultat.getText());
 			}
 		});
-		root.getChildren().add(resultat);
 
-
-		Button inventaire = new Button("Afficher l'inventaire");
+		
+		//Inventaire
+		inventaire = new Button("Afficher l'inventaire");
 		inventaire.setTranslateX(10);
 		inventaire.setTranslateY(10);
+
 		root.getChildren().add(inventaire);
 		
 		top.setTop(g1);
@@ -116,10 +95,6 @@ public class Test extends Application {
 		bottom.setBottom(barreDuBas);
 		bottom.setVisible(false);
 		root.getChildren().add(bottom);
-		
-		primaryStage.show();
 	}
-
-
 
 }
