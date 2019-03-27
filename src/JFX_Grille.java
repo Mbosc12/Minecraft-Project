@@ -1,39 +1,25 @@
-import javax.print.DocFlavor.URL;
-import javafx.application.Application;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
-import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
-public class JFX_Grille extends Application {
+public class JFX_Grille {
 
-	public BorderPane top = new BorderPane();
-	public BorderPane bottom = new BorderPane();
 	public GridPane g1 = new GridPane();
-	
+	public GridPane g2 = new GridPane();
+
 	public Button resultat;
 	public Button inventaire;
+	public Label labelinventory;
 	
-	final FlowPane barreDuBas = new FlowPane(); 
+	public Inventaire inv = new Inventaire();
+
 	
-	@Override
-	public void start(Stage primaryStage) {
-		
-		Group root = new Group();
-		Scene scene = new Scene(root, 500, 500);
-		primaryStage.setScene(scene);
-		String css = getClass().getResource("application.css").toExternalForm();
-		scene.getStylesheets().add(css);
-	}
-	
+    
 	public JFX_Grille() {
 		//Grille
 		int a=1;
@@ -52,8 +38,9 @@ public class JFX_Grille extends Application {
 
 					@Override 
 					public void handle(ActionEvent actionEvent) { 
-						System.out.println(b.getText()); 
-						bottom.setVisible(true);
+						System.out.println(b.getText());
+						g2.setVisible(true);
+						labelinventory.setVisible(true);
 					} 
 				});
 			}
@@ -61,7 +48,7 @@ public class JFX_Grille extends Application {
 		
 		//Resultat
 		resultat = new Button();
-		resultat.setText("RÃ©sultat");
+		resultat.setText("Résultat");
 		resultat.setTextFill(null);
 		resultat.setPrefSize(80, 80);
 		resultat.setTranslateX(400);
@@ -70,31 +57,48 @@ public class JFX_Grille extends Application {
 			@Override
 			public void handle(ActionEvent actionEvent) {
 				System.out.println(resultat.getText());
+				inv.inv.add(new Block(0, "test", false, null));
+				System.out.println(inv.inv.size());
 			}
 		});
 
 		
-		//Inventaire
+		//Bouton inventaire permanant
 		inventaire = new Button("Afficher l'inventaire");
+		inventaire.setStyle("");
 		inventaire.setTranslateX(10);
 		inventaire.setTranslateY(10);
-
-		root.getChildren().add(inventaire);
 		
-		top.setTop(g1);
-		top.setPadding(new Insets(80, 5, 5, 100));
-		root.getChildren().add(top);
 
 		
-		//bottom.setPadding(new Insets(10,400,5,100));
-		barreDuBas.setId("barreDuBas");
-		barreDuBas.setPrefSize(500, 100);
-		bottom.setLayoutX(0);
-		bottom.setLayoutY(400);
-	
-		bottom.setBottom(barreDuBas);
-		bottom.setVisible(false);
-		root.getChildren().add(bottom);
+		//Boutton
+		for(int i = 0; i < inv.inv.size(); i++) {
+			Button blocks_aff = new Button();
+			blocks_aff.setId("a");
+			blocks_aff.setText("Button"+i);
+			blocks_aff.setTextFill(null);
+			blocks_aff.setPrefSize(40, 40);
+			blocks_aff.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent actionEvent) {
+					g2.setVisible(false);
+					labelinventory.setVisible(false);
+				}
+			});
+			g2.setPadding(new Insets(50, 0, 0, 0));
+			g2.add(blocks_aff, (int)i%14, (int)i/14);
+		}
+		
+		labelinventory = new Label();
+		labelinventory.setId("labelinv");
+		labelinventory.setText("Inventaire");
+		labelinventory.setTranslateX(260);
+		labelinventory.setTranslateY(350);
+		labelinventory.setVisible(false);
+
+		g2.setId("g2");
+		g2.setVisible(false);
+		
 	}
 
 }

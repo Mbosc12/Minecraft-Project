@@ -1,14 +1,25 @@
-<<<<<<< HEAD
+#g2 {
+	-fx-background-color: #e8e8e8;
+}
+
+#a {
+  -fx-background-image: url('../dirt.png');
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+  -fx-background-size: cover;
+}
+
+#a:hover {
+	-fx-background-image: url("../casehover.png");
+}
 #barreDuBas {
 	-fx-background-color: #ff0000;
-	-fx-text-fill: white;
-	-fx-alignment: CENTER
-	
 }
 
 .button {
-	-fx-background-color: #c6c6c6;
-	-fx-border-color: #8b8b8b;
+	-fx-background-color: #8b8b8b;
+	-fr-border-radius: 5px;
+	-fx-border-color: #ffffff;
 }
 
 .button:hover {

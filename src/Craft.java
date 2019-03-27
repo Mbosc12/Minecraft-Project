@@ -2,41 +2,39 @@
 public class Craft {
 
 	public int res;
-	public Integer[][] matrice;
-	
-	
-	public Craft(int r) {
-		
-		this.matrice = new Integer[][] {
-				{0, 0, 0},
-				{0, 0, 0},
-				{0, 0, 0}
+	public Block[][] matrice;
+	public Block vide = new Block(0, "vide", true, null);
+
+	public Craft() {
+
+		this.matrice = new Block[][] {
+			{vide, vide, vide},
+			{vide, vide, vide},
+			{vide, vide, vide}
 		};
-		
-		this.res = r;
+
 	}
-	
-	
-	public void setCraft(String l1, String l2, String l3) {
-	
-		String[] s = {l1, l2, l3};
-		
+
+
+	public void setCraft(Block[] l1, Block[] l2, Block[] l3) {
+
+		Block[][] sol = {l1, l2, l3};
+
 		for(int i=0; i < 3; i++) {
 			for(int j=0; j < 3; j++) {
-				if (s[i].charAt(j) == '#') {
-					this.matrice[i][j] = 1; 	
-				}
+				this.matrice[i][j] = sol[i][j];	
 			}
 		}
 	}
 	
-	public void setElement(int pos1, int pos2, Block b) {
-		if(matrice[pos1][pos2] == 1) {
-			matrice[pos1][pos2] = b.ID;
-		}
+	public void verif(Block b) {
+		Block[][] b_ok = b.craft.matrice;
 		
+		for(int i = 0; i < 3; i++) {
+			for(int j = 0; j < 3; j++) {
+				
+			}
+		}
 	}
-	
-	
-	
 }
+
