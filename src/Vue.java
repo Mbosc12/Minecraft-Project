@@ -1,51 +1,51 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Event;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
 
-public class Vue extends JFrame implements MouseListener, ActionListener{
+import javafx.application.Application;
+
+import javafx.geometry.Insets;
+
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+
+import javafx.stage.Stage;
+
+public class Vue extends Application{
 	
-	public Inventaire inv = new Inventaire();
-	public AWT_Grille grille;
+	public BorderPane top = new BorderPane();
+
 	
-	public static ArrayList<JButton> tab;
 
-	public Vue() {
-		this.setTitle("Minecraft - Crafting Helper");
-
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-		this.addMouseListener(this);
-		this.setResizable(false);
-		this.setLayout(new BorderLayout());
-		this.setSize(500, 450);
-		this.setBackground(Color.decode("#c6c6c6"));
-		this.setVisible(true);		
+	//Application 
+	@Override
+	public void start(Stage primaryStage) {
+		Group root = new Group();
 		
-		this.grille = new AWT_Grille(this);
+		Scene scene = new Scene(root, 500, 500);
+		primaryStage.setScene(scene);
 		
+		String css = getClass().getResource("application.css").toExternalForm();
+		scene.getStylesheets().add(css);
+		
+		JFX_Grille grille = new JFX_Grille();
 	
-		this.add(grille.panel, BorderLayout.NORTH);
-			
-		this.add(inv, BorderLayout.SOUTH);
-		inv.setVisible(false);
-
-
+		top.setTop(grille.g1);
+		top.setPadding(new Insets(80, 5, 5, 100));
+		
+		root.getChildren().add(top);
+		root.getChildren().add(grille.resultat);
+		root.getChildren().add(grille.inventaire);
+		primaryStage.show();
 	}
-
-
-
+	
+	
+	
+	
+	
 	public static void main(String[] args) {
+
+		Application.launch(Vue.class, args);
+
 		Vue v = new Vue();
 
 		Block buche = new Block(2, "Buche", true, new Craft(4));
@@ -54,34 +54,4 @@ public class Vue extends JFrame implements MouseListener, ActionListener{
 		planche.craft.setElement(1, 1, buche);
 
 	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) {}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {}
-
-
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		JButton source = (JButton)e.getSource();
-		System.out.println(source.getName());
-		this.inv.setVisible(true);
-		
-	}
-
-
-
 }
-
