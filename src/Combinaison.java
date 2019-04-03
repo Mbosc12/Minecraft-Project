@@ -7,7 +7,7 @@ public class Combinaison {
 	public Combinaison() {
 		/*
 		combi = new Block[][] {
-		         {jf.b.getText(),jf.b.getText(),jf.b.getText()},
+		         {jf.blocks_aff.getId(),jf.b.getText(),jf.b.getText()},
 		         {jf.b.getText(),jf.b.getText(),jf.b.getText()},
 		         {jf.b.getText(),jf.b.getText(),jf.b.getText()}
 		};

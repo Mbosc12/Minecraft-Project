@@ -17,7 +17,7 @@ public class JFX_Grille {
 	public Label labelinventory;
 	
 	public Inventaire inv = new Inventaire();
-
+	Button blocks_aff;
 	
     
 	public JFX_Grille() {
@@ -48,7 +48,7 @@ public class JFX_Grille {
 		
 		//Resultat
 		resultat = new Button();
-		resultat.setText("Résultat");
+		resultat.setText("Rï¿½sultat");
 		resultat.setTextFill(null);
 		resultat.setPrefSize(80, 80);
 		resultat.setTranslateX(400);
@@ -56,9 +56,6 @@ public class JFX_Grille {
 		resultat.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
-				System.out.println(resultat.getText());
-				inv.inv.add(new Block(0, "test", false, null));
-				System.out.println(inv.inv.size());
 			}
 		});
 
@@ -68,13 +65,21 @@ public class JFX_Grille {
 		inventaire.setStyle("");
 		inventaire.setTranslateX(10);
 		inventaire.setTranslateY(10);
+		inventaire.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent actionEvent) {
+				inv.AjouterBlock(new Block(0, "Sand", false, null));
+				for(int a = 0; a < 42; a++) {
+					System.out.println(inv.inv.get(a).libelle);
+				}
+			}
+		});
 		
 
 		
 		//Boutton
 		for(int i = 0; i < inv.inv.size(); i++) {
-			Button blocks_aff = new Button();
-			blocks_aff.setId("a");
+			blocks_aff = new Button();
+			blocks_aff.setId("Image"+inv.inv.get(i).libelle);
 			blocks_aff.setText("Button"+i);
 			blocks_aff.setTextFill(null);
 			blocks_aff.setPrefSize(40, 40);
@@ -83,6 +88,7 @@ public class JFX_Grille {
 				public void handle(ActionEvent actionEvent) {
 					g2.setVisible(false);
 					labelinventory.setVisible(false);
+					System.out.println(blocks_aff.getId());
 				}
 			});
 			g2.setPadding(new Insets(50, 0, 0, 0));

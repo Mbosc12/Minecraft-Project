@@ -2,13 +2,6 @@
 	-fx-background-color: #e8e8e8;
 }
 
-#a {
-  -fx-background-image: url('../dirt.png');
-  -fx-background-repeat: no-repeat;
-  -fx-background-position: center;
-  -fx-background-size: cover;
-}
-
 #a:hover {
 	-fx-background-image: url("../casehover.png");
 }
@@ -25,4 +18,17 @@
 .button:hover {
 	-fx-background-color: #e8e8e8;
 	-fx-border-radius: 3px;
+}
+#But1 {
+  -fx-background-image: url('../case.png');
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+  -fx-background-size: cover;
+}
+
+#ImageSand {
+  -fx-background-image: url('../dirt.png');
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+  -fx-background-size: cover;
 }
