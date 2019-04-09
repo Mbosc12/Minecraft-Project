@@ -1,9 +1,22 @@
+import java.awt.Color;
+import java.awt.Dimension;
+import java.security.acl.Group;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.effect.ImageInput;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
+
 
 public class Inventaire extends JPanel{
 
@@ -12,16 +25,18 @@ public class Inventaire extends JPanel{
 	public BorderPane bottom;
 	public Button blocks_aff; 
 
+
 	//StackPane stackPane = new StackPane();
 	//Image im;
-
 
 	public Inventaire() {
 
 		this.inv = new ArrayList<>();
 		for(int a=0; a < 42; a++) {
 			inv.add(new Block(a, "dirt", false, null));
+
 		}
+		//Affichage inventaire temporaire
 
 		bottom = new BorderPane();
 
@@ -36,6 +51,7 @@ public class Inventaire extends JPanel{
 		bottom.setLayoutX(0);
 		bottom.setLayoutY(350);
 		bottom.setVisible(true);
+
 	}
 
 	public void AjouterBlock(Block b) {
@@ -47,4 +63,9 @@ public class Inventaire extends JPanel{
 
 	}
 
+
 }
+
+
+
+

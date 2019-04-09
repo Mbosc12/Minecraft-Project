@@ -21,6 +21,10 @@ public class JFX_Grille {
 
 	public Inventaire inv = new Inventaire();
 
+	public Button blocks_aff;
+	
+    
+
 	public JFX_Grille() {
 
 		//Grille
@@ -69,6 +73,7 @@ public class JFX_Grille {
 		//Resultat
 		resultat = new Button();
 		resultat.setText("Résultat");
+
 		resultat.setTextFill(null);
 		resultat.setPrefSize(80, 80);
 		resultat.setTranslateX(400);
@@ -92,7 +97,7 @@ public class JFX_Grille {
 
 		//BoutonS inventaire 
 		for(int i = 0; i < inv.inv.size(); i++) {
-			Button blocks_aff = new Button();
+			blocks_aff = new Button();
 			blocks_aff.setId("a");
 			blocks_aff.setText("Button"+i);
 			blocks_aff.setTextFill(null);
