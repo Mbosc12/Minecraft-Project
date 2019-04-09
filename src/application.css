@@ -19,6 +19,7 @@
 	-fx-background-color: #e8e8e8;
 	-fx-border-radius: 3px;
 }
+
 #But1 {
   -fx-background-image: url('../case.png');
   -fx-background-repeat: no-repeat;

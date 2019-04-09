@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>src</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>dirt.jpg</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/dirt.jpg</locationURI>
+		</link>
+		<link>
+			<name>dirt.png</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/dirt.png</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>

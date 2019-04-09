@@ -47,7 +47,7 @@ public class Vue extends Application{
 		root.getChildren().add(grille.labelinventory);
 		root.getChildren().add(grille.resultat);
 		root.getChildren().add(grille.inventaire);
-		
+
 		primaryStage.show();
 	}
 	

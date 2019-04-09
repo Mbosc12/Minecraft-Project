@@ -1,10 +1,13 @@
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-
+import javafx.scene.input.TransferMode;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class JFX_Grille {
@@ -15,12 +18,11 @@ public class JFX_Grille {
 	public Button resultat;
 	public Button inventaire;
 	public Label labelinventory;
-	
+
 	public Inventaire inv = new Inventaire();
-	Button blocks_aff;
-	
-    
+
 	public JFX_Grille() {
+
 		//Grille
 		int a=1;
 		for (int i = 1; i<4; i++) {
@@ -43,12 +45,30 @@ public class JFX_Grille {
 						labelinventory.setVisible(true);
 					} 
 				});
+				b.setOnDragOver(new EventHandler <DragEvent>() {
+					public void handle(DragEvent event) {
+						if (event.getGestureSource() != b && event.getDragboard().hasString()) {
+							event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+						}
+
+						event.consume();
+					}
+				});
+				b.setOnDragDropped(new EventHandler <DragEvent>() {
+					public void handle(DragEvent event) {
+						System.out.println("onDragEntered");
+						if (event.getGestureSource() != b && event.getDragboard().hasString()) {
+							b.setId("a");
+						}
+						event.consume();
+					}
+				});
 			}
 		}
-		
+
 		//Resultat
 		resultat = new Button();
-		resultat.setText("R�sultat");
+		resultat.setText("Résultat");
 		resultat.setTextFill(null);
 		resultat.setPrefSize(80, 80);
 		resultat.setTranslateX(400);
@@ -56,30 +76,24 @@ public class JFX_Grille {
 		resultat.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
+				System.out.println(resultat.getText());
+				inv.inv.add(new Block(0, "test", false, null));
+				System.out.println(inv.inv.size());
 			}
 		});
 
-		
-		//Bouton inventaire permanant
+
+		//Bouton inventaire permanent
 		inventaire = new Button("Afficher l'inventaire");
 		inventaire.setStyle("");
 		inventaire.setTranslateX(10);
 		inventaire.setTranslateY(10);
-		inventaire.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent actionEvent) {
-				inv.AjouterBlock(new Block(0, "Sand", false, null));
-				for(int a = 0; a < 42; a++) {
-					System.out.println(inv.inv.get(a).libelle);
-				}
-			}
-		});
-		
 
-		
-		//Boutton
+
+		//BoutonS inventaire 
 		for(int i = 0; i < inv.inv.size(); i++) {
-			blocks_aff = new Button();
-			blocks_aff.setId("Image"+inv.inv.get(i).libelle);
+			Button blocks_aff = new Button();
+			blocks_aff.setId("a");
 			blocks_aff.setText("Button"+i);
 			blocks_aff.setTextFill(null);
 			blocks_aff.setPrefSize(40, 40);
@@ -88,13 +102,36 @@ public class JFX_Grille {
 				public void handle(ActionEvent actionEvent) {
 					g2.setVisible(false);
 					labelinventory.setVisible(false);
-					System.out.println(blocks_aff.getId());
 				}
 			});
+			blocks_aff.setOnDragExited(new EventHandler <DragEvent>() {
+				public void handle(DragEvent event) {
+					g2.setVisible(false);
+					labelinventory.setVisible(false);
+
+					event.consume();
+				}
+			});
+
+			blocks_aff.setOnDragDetected(new EventHandler <MouseEvent>() {
+				public void handle(MouseEvent event) {
+					Dragboard db = blocks_aff.startDragAndDrop(TransferMode.ANY);
+					//db.setDragView(new Image(new File("..dirt.png")));
+
+					ClipboardContent content = new ClipboardContent();
+					content.putUrl("../dirt_ico.png");
+					content.putString(blocks_aff.getText());
+					db.setContent(content);
+					System.out.println(content);
+
+					event.consume();
+				}
+			});
+
 			g2.setPadding(new Insets(50, 0, 0, 0));
 			g2.add(blocks_aff, (int)i%14, (int)i/14);
 		}
-		
+
 		labelinventory = new Label();
 		labelinventory.setId("labelinv");
 		labelinventory.setText("Inventaire");
@@ -104,7 +141,8 @@ public class JFX_Grille {
 
 		g2.setId("g2");
 		g2.setVisible(false);
-		
+
 	}
 
 }
+
