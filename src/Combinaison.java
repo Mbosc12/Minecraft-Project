@@ -1,27 +1,27 @@
 
 public class Combinaison {
 
-	public String[][] combi;
-	public JFX_Grille jf;
-
+	Repertoire r = new Repertoire();
+	
+	String[][] matrice;
+	
 	public Combinaison() {
-
-		combi = new String [][] {
-			{jf.blocks_aff.getId(),jf.b.getText(),jf.b.getText()},
-			{jf.b.getText(),jf.b.getText(),jf.b.getText()},
-			{jf.b.getText(),jf.b.getText(),jf.b.getText()}
+		
+		matrice = new String[][] {
+				{"test","test","test"},
+				{"test","test","test"},
+				{"test","test","test"}
+		};
+		
+	}
+	
+	public boolean verification(Item[][] i) {
+		for(int a = 0; a < 9; a++) {
+			if(!(i[a/3][a%3].libelle.equals(this.matrice[a/3][a%3]))) {
+				return false;
+			}
 		}
-
-
-
-
-			combi = new String[][] {
-				{jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6)},
-				{jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6)},
-				{jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6)}
-			};
-
-
+		return true;
 		
 	}
 }

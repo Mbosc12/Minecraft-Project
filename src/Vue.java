@@ -54,8 +54,6 @@ public class Vue extends Application{
 	
 	
 	public static void main(String[] args) {
-		Inventaire v = new Inventaire();
 		Application.launch(Vue.class, args);
-		System.out.println("test");
 	}
  }
