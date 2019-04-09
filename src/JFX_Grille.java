@@ -1,4 +1,6 @@
 
+import java.io.File;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -7,6 +9,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
 import javafx.scene.input.DragEvent;
@@ -79,6 +82,8 @@ public class JFX_Grille {
 					}
 				});
 
+
+
 			}
 		}
 
@@ -120,6 +125,15 @@ public class JFX_Grille {
 					labelinventory.setVisible(false);
 				}
 			});
+			blocks_aff.setOnDragExited(new EventHandler <DragEvent>() {
+				public void handle(DragEvent event) {
+					/* mouse moved away, remove the graphical cues */
+					g2.setVisible(false);
+					labelinventory.setVisible(false);
+
+					event.consume();
+				}
+			});
 
 			blocks_aff.setOnDragDetected(new EventHandler <MouseEvent>() {
 				public void handle(MouseEvent event) {
@@ -128,9 +142,10 @@ public class JFX_Grille {
 
 					/* allow any transfer mode */
 					Dragboard db = blocks_aff.startDragAndDrop(TransferMode.ANY);
-
+					//db.setDragView(new Image(new File("..dirt.png")));
 					/* put a string on dragboard */
 					ClipboardContent content = new ClipboardContent();
+					content.putUrl("../dirt_ico.png");
 					content.putString(blocks_aff.getText());
 					db.setContent(content);
 					System.out.println(content);
@@ -139,12 +154,8 @@ public class JFX_Grille {
 				}
 			});
 
-			blocks_aff.setOnDragEntered(new EventHandler <DragEvent>() {
-				public void handle(DragEvent event) {
-					blocks_aff.setId("a");
 
-				}
-			});
+
 
 			g2.setPadding(new Insets(50, 0, 0, 0));
 			g2.add(blocks_aff, (int)i%14, (int)i/14);
