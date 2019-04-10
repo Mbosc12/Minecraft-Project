@@ -4,8 +4,6 @@ import javafx.geometry.Insets;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
 import javafx.stage.Stage;

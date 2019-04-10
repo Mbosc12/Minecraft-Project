@@ -10,18 +10,15 @@ public class Combinaison {
 			{jf.blocks_aff.getId(),jf.b.getText(),jf.b.getText()},
 			{jf.b.getText(),jf.b.getText(),jf.b.getText()},
 			{jf.b.getText(),jf.b.getText(),jf.b.getText()}
-		}
+		};
+
+		combi = new String[][] {
+			{jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6)},
+			{jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6)},
+			{jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6)}
+		};
 
 
 
-
-			combi = new String[][] {
-				{jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6)},
-				{jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6)},
-				{jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6),jf.blocks_aff.getId().substring(6)}
-			};
-
-
-		
 	}
 }

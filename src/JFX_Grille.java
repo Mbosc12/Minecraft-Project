@@ -22,6 +22,7 @@ public class JFX_Grille {
 	public Inventaire inv = new Inventaire();
 
 	public Button blocks_aff;
+	public Button b;
 	
     
 
@@ -31,7 +32,7 @@ public class JFX_Grille {
 		int a=1;
 		for (int i = 1; i<4; i++) {
 			for (int j = 0; j<3; j++) {
-				Button b = new Button();
+				b = new Button();
 				b.setTextFill(null);
 				b.setText("Button"+a); a+= 1;
 				b.setPrefSize(80,80);
@@ -124,7 +125,8 @@ public class JFX_Grille {
 					//db.setDragView(new Image(new File("..dirt.png")));
 
 					ClipboardContent content = new ClipboardContent();
-					content.putUrl("../dirt_ico.png");
+					//Ajouter image durant le drag :
+					//content.putUrl("../dirt_ico.png");
 					content.putString(blocks_aff.getText());
 					db.setContent(content);
 					System.out.println(content);
