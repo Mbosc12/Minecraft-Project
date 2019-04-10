@@ -6,7 +6,7 @@ public class Combinaison {
 	String[][] matrice;
 	
 	public Combinaison() {
-		
+
 		matrice = new String[][] {
 				{"test","test","test"},
 				{"test","test","test"},
@@ -22,6 +22,5 @@ public class Combinaison {
 			}
 		}
 		return true;
-		
 	}
 }
