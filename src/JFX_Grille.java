@@ -22,9 +22,12 @@ public class JFX_Grille {
 	public Inventaire inv = new Inventaire();
 
 	public Button blocks_aff;
+	
+	ClaudeEventHandler ceh;
 
 	public JFX_Grille() {
-
+		ceh = new ClaudeEventHandler();
+		
 		//Grille
 		int a=1;
 		for (int i = 1; i<4; i++) {
@@ -39,6 +42,22 @@ public class JFX_Grille {
 				g1.setLayoutY(80);
 
 				// EVENEMENTS
+				
+				
+				b.setOnMouseClicked(ceh);
+				
+				b.setOnMousePressed(new EventHandler< MouseEvent>() {
+					public void handle(MouseEvent mouseEvent) {
+
+					}
+				});
+
+				b.setOnMouseReleased(new EventHandler< MouseEvent>() {
+					public void handle(MouseEvent mouseEvent) {
+
+					}
+				});
+
 				b.setOnAction(new EventHandler<ActionEvent>() { 
 					@Override 
 					public void handle(ActionEvent actionEvent) { 
@@ -70,7 +89,7 @@ public class JFX_Grille {
 
 		//Resultat
 		resultat = new Button();
-		resultat.setText("Résultat");
+		resultat.setText("Rï¿½sultat");
 
 		resultat.setTextFill(null);
 		resultat.setPrefSize(80, 80);
@@ -103,9 +122,10 @@ public class JFX_Grille {
 			blocks_aff.setText("Button"+i);
 			blocks_aff.setTextFill(null);
 			blocks_aff.setPrefSize(40, 40);
+			blocks_aff.setOnMouseClicked(ceh);
 			
 			// EVENEMENTS 
-			
+
 			blocks_aff.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent actionEvent) {
