@@ -23,8 +23,7 @@ public class JFX_Grille {
 
 	public Button blocks_aff;
 	public Button b;
-	
-    
+
 
 	public JFX_Grille() {
 
@@ -41,8 +40,8 @@ public class JFX_Grille {
 				g1.setLayoutX(100);
 				g1.setLayoutY(80);
 
+				// EVENEMENTS
 				b.setOnAction(new EventHandler<ActionEvent>() { 
-
 					@Override 
 					public void handle(ActionEvent actionEvent) { 
 						System.out.println(b.getText());
@@ -73,7 +72,7 @@ public class JFX_Grille {
 
 		//Resultat
 		resultat = new Button();
-		resultat.setText("Résultat");
+		resultat.setText("R�sultat");
 
 		resultat.setTextFill(null);
 		resultat.setPrefSize(80, 80);
@@ -82,9 +81,7 @@ public class JFX_Grille {
 		resultat.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
-				System.out.println(resultat.getText());
-				inv.inv.add(new Block(0, "test", false, null));
-				System.out.println(inv.inv.size());
+				inv.inv.get(1).libelle = "test";
 			}
 		});
 
@@ -94,7 +91,12 @@ public class JFX_Grille {
 		inventaire.setStyle("");
 		inventaire.setTranslateX(10);
 		inventaire.setTranslateY(10);
-
+		inventaire.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent actionEvent) {
+				System.out.println(inv.inv.get(1).libelle);
+			}
+		});
 
 		//BoutonS inventaire 
 		for(int i = 0; i < inv.inv.size(); i++) {
@@ -103,6 +105,9 @@ public class JFX_Grille {
 			blocks_aff.setText("Button"+i);
 			blocks_aff.setTextFill(null);
 			blocks_aff.setPrefSize(40, 40);
+			
+			// EVENEMENTS 
+			
 			blocks_aff.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent actionEvent) {
