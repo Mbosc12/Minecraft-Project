@@ -1,15 +1,12 @@
 
 import java.util.ArrayList;
 
-public class Inventaire{
-
-	public ArrayList<Item> inv = new ArrayList<>();
+public class Inventaire extends ArrayList<Item>{
 
 	public Inventaire() {
-
-		this.inv = new ArrayList<>();
+		super();
 		for(int a=0; a < 42; a++) {
-			inv.add(new Item("dirt", false, null));
+			this.add(new Item("dirt", false, null));
 		}
 		
 	}

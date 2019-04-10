@@ -19,10 +19,11 @@ public class JFX_Grille {
 	public Button inventaire;
 	public Label labelinventory;
 
-	public Inventaire inv = new Inventaire();
+	public Inventaire inventory = new Inventaire();
 
 	public Button blocks_aff;
 
+	@SuppressWarnings("unchecked")
 	public JFX_Grille() {
 
 		//Grille
@@ -60,7 +61,7 @@ public class JFX_Grille {
 					public void handle(DragEvent event) {
 						System.out.println("onDragEntered");
 						if (event.getGestureSource() != b && event.getDragboard().hasString()) {
-							b.setId("a");
+							b.setId(blocks_aff.getId());
 						}
 						event.consume();
 					}
@@ -70,7 +71,7 @@ public class JFX_Grille {
 
 		//Resultat
 		resultat = new Button();
-		resultat.setText("Résultat");
+		resultat.setText("RÃ©sultat");
 
 		resultat.setTextFill(null);
 		resultat.setPrefSize(80, 80);
@@ -79,29 +80,22 @@ public class JFX_Grille {
 		resultat.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
-				inv.inv.get(1).libelle = "test";
+				inventory.get(1).libelle = "case";
 			}
 		});
-
 
 		//Bouton inventaire permanent
 		inventaire = new Button("Afficher l'inventaire");
 		inventaire.setStyle("");
 		inventaire.setTranslateX(10);
 		inventaire.setTranslateY(10);
-		inventaire.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent actionEvent) {
-				System.out.println(inv.inv.get(1).libelle);
-			}
-		});
+		InventoryEventHandler ieh = new InventoryEventHandler(this.inventory, blocks_aff);
+		inventaire.setOnAction(ieh);
 
-		//BoutonS inventaire 
-		for(int i = 0; i < inv.inv.size(); i++) {
+		//Boutons inventaire 
+		for(int i = 0; i < inventory.size(); i++) {
 			blocks_aff = new Button();
-			blocks_aff.setId("a");
-			blocks_aff.setText("Button"+i);
-			blocks_aff.setTextFill(null);
+			blocks_aff.setId("image"+inventory.get(i).libelle);
 			blocks_aff.setPrefSize(40, 40);
 			
 			// EVENEMENTS 
@@ -111,6 +105,7 @@ public class JFX_Grille {
 				public void handle(ActionEvent actionEvent) {
 					g2.setVisible(false);
 					labelinventory.setVisible(false);
+					System.out.println(blocks_aff.getText());
 				}
 			});
 			blocks_aff.setOnDragExited(new EventHandler <DragEvent>() {

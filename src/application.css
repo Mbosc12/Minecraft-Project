@@ -27,7 +27,7 @@
   -fx-background-size: cover;
 }
 
-#ImageSand {
+#imagedirt {
   -fx-background-image: url('../dirt.png');
   -fx-background-repeat: no-repeat;
   -fx-background-position: center;
