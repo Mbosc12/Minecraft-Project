@@ -19,11 +19,9 @@ public class JFX_Grille {
 	public Button inventaire;
 	public Label labelinventory;
 
-	public Inventaire inv = new Inventaire();
+	public Inventaire inventory = new Inventaire();
 
 	public Button blocks_aff;
-	public Button b;
-
 
 	public JFX_Grille() {
 
@@ -31,7 +29,7 @@ public class JFX_Grille {
 		int a=1;
 		for (int i = 1; i<4; i++) {
 			for (int j = 0; j<3; j++) {
-				b = new Button();
+				Button b = new Button();
 				b.setTextFill(null);
 				b.setText("Button"+a); a+= 1;
 				b.setPrefSize(80,80);
@@ -62,7 +60,7 @@ public class JFX_Grille {
 					public void handle(DragEvent event) {
 						System.out.println("onDragEntered");
 						if (event.getGestureSource() != b && event.getDragboard().hasString()) {
-							b.setId("a");
+							b.setId(blocks_aff.getId());
 						}
 						event.consume();
 					}
@@ -81,7 +79,7 @@ public class JFX_Grille {
 		resultat.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
-				inv.inv.get(1).libelle = "test";
+				inventory.inv.get(1).libelle = "case";
 			}
 		});
 
@@ -94,25 +92,25 @@ public class JFX_Grille {
 		inventaire.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
-				System.out.println(inv.inv.get(1).libelle);
+				System.out.println("Libellé : " + inventory.inv.get(1).libelle);
 			}
 		});
 
 		//BoutonS inventaire 
-		for(int i = 0; i < inv.inv.size(); i++) {
+		for(int i = 0; i < inventory.inv.size(); i++) {
 			blocks_aff = new Button();
-			blocks_aff.setId("a");
-			blocks_aff.setText("Button"+i);
-			blocks_aff.setTextFill(null);
+			blocks_aff.setId("image"+inventory.inv.get(i).libelle);
+						
 			blocks_aff.setPrefSize(40, 40);
-			
-			// EVENEMENTS 
+
+			// EVENEMENTS
 			
 			blocks_aff.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent actionEvent) {
 					g2.setVisible(false);
 					labelinventory.setVisible(false);
+					
 				}
 			});
 			blocks_aff.setOnDragExited(new EventHandler <DragEvent>() {
@@ -128,13 +126,12 @@ public class JFX_Grille {
 				public void handle(MouseEvent event) {
 					Dragboard db = blocks_aff.startDragAndDrop(TransferMode.ANY);
 					//db.setDragView(new Image(new File("..dirt.png")));
-
+					
 					ClipboardContent content = new ClipboardContent();
-					//Ajouter image durant le drag :
-					//content.putUrl("../dirt_ico.png");
+					content.putUrl("../dirt_ico.png");
 					content.putString(blocks_aff.getText());
 					db.setContent(content);
-					System.out.println(content);
+					//System.out.println(content);
 
 					event.consume();
 				}
@@ -157,4 +154,3 @@ public class JFX_Grille {
 	}
 
 }
-
