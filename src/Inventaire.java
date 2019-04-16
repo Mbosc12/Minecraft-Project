@@ -17,13 +17,12 @@ public class Inventaire extends ArrayList<Item>{
 	public FlowPane menuitems = new FlowPane();
 	public FlowPane menuoutils = new FlowPane();
 	public FlowPane menuminerais = new FlowPane();
-	
+
 	Item it;
-	
+
 	public Inventaire() {		
 		super();
 
-		
 		for(int a=0; a < 48; a++) {
 			if(a == 0) {
 				this.add(new Item("diamant", false, "minerai", null));
@@ -31,20 +30,20 @@ public class Inventaire extends ArrayList<Item>{
 			else {
 				this.add(new Item("dirt", false, "block", null));	
 			}
-			
+
 			FlowPane p = new FlowPane();
 			p.setPrefSize(48, 48);
 			//p.setId("inventoryslot");
 			p.setAlignment(Pos.CENTER);
 			p.getChildren().add(this.get(a));
 			p.setId("inventoryslot");
-			
+
 			this.get(a).setOnMousePressed(event -> {
 
 				System.out.println("Item ID :  INV -> " + ((Item) event.getSource()));
 				it = ((Item) event.getSource());
 			});
-			
+
 			inventorygrid.add(p, a%16, a/16);
 
 		}
@@ -111,6 +110,5 @@ public class Inventaire extends ArrayList<Item>{
 		inventorygrid.setId("inventorygrid");
 		inventorygrid.setLayoutX(56);
 		inventorygrid.setLayoutY(435);
-
 	}
 }

@@ -7,7 +7,7 @@ public class Combinaison {
 	String[][] matrice;
 	
 	public Combinaison() {
-		
+
 		matrice = new String[][] {
 				{"test","test","test"},
 				{"test","test","test"},
@@ -23,7 +23,6 @@ public class Combinaison {
 			}
 		}
 		return true;
-		
 	}
 	public static void main(String[] args) {
 		Scanner myObj = new Scanner(System.in);  // Create a Scanner object
