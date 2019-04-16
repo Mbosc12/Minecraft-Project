@@ -1,0 +1,18 @@
+#craftarea {
+	-fx-background-color: #c6c6c6;
+}
+
+#tablearea {
+	-fx-background-color: #ffffff;
+}
+
+#tableslot0, #tableslot1,#tableslot2, #tableslot3, #tableslot4, #tableslot5, #tableslot6, #tableslot7, #tableslot8, #resultat{
+	-fx-background-color: #8b8b8b;
+	-fx-border-width: 2 0 0 2;
+	-fx-border-color: #373737;
+}
+
+#tableslot0:hover, #tableslot1:hover, #tableslot2:hover, #tableslot3:hover, #tableslot4:hover, #tableslot5:hover, #tableslot6:hover, #tableslot7:hover, #tableslot8:hover, #resultat:hover {
+	-fx-background-color: #b8b8b8;
+	-fx-transition: 0.3s;
+}

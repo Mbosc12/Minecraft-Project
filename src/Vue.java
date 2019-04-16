@@ -1,53 +1,39 @@
 import javafx.application.Application;
-
-import javafx.geometry.Insets;
-
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-
 import javafx.stage.Stage;
 
 public class Vue extends Application{
 	
-	public BorderPane top = new BorderPane();
-	public BorderPane bottom = new BorderPane();
+	public Inventaire invcl = new Inventaire();
+	public Evenements evntcl = new Evenements();
+	public CraftArea craftcl = new CraftArea();
 	
 	public Group root = new Group();
-	public Scene scene = new Scene(root, 600, 600);
+	public Scene scene = new Scene(root, 900, 600);
 	
-	public JFX_Grille grille = new JFX_Grille();
-	
-	public String css = getClass().getResource("application.css").toExternalForm();
-
-	
+	public String cssinv = getClass().getResource("inv.css").toExternalForm();
+	public String csscraft = getClass().getResource("craft.css").toExternalForm();
+	public String cssevent = getClass().getResource("event.css").toExternalForm();
 
 	//Application 
 	@Override
 	public void start(Stage primaryStage) {
 		
 		primaryStage.setScene(scene);
-		
-		scene.getStylesheets().add(css);
 		primaryStage.setResizable(false);
-	
-
-		top.setTop(grille.g1);
-		top.setPadding(new Insets(80, 5, 5, 100));
-	
+		scene.getStylesheets().add(cssinv);
+		scene.getStylesheets().add(csscraft);
+		scene.getStylesheets().add(cssevent);
 		
-		bottom.setTop(grille.g2);
-		bottom.setPadding(new Insets(350, 20, 0, 20));
 		
-		root.getChildren().add(bottom);
-		root.getChildren().add(top);
+		root.getChildren().add(craftcl.craftarea);
+		root.getChildren().add(craftcl.resultat);
+		root.getChildren().add(evntcl.evnts);
 		
-		root.getChildren().add(grille.labelinventory);
-		root.getChildren().add(grille.resultat);
-		root.getChildren().add(grille.inventaire);
-
+		root.getChildren().add(invcl.inventoryarea);
+		root.getChildren().add(invcl.menuarea);
+		root.getChildren().add(invcl.inventorygrid);
 		primaryStage.show();
 	}
 	

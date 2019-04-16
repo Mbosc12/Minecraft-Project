@@ -1,0 +1,15 @@
+#evnts {
+	-fx-background-color: #ffffff;
+}
+
+#labelevent {
+	-fx-background-color: #8b8b8b;
+	-fx-border-width: 2 2 0 2;
+	-fx-border-color: #373737;
+}
+
+#labelevent2 {
+	-fx-background-color: #c6c6c6;
+	-fx-border-width: 2 2 0 2;
+	-fx-border-color: #373737;
+}
