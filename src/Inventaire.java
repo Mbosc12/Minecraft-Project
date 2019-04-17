@@ -72,7 +72,7 @@ public class Inventaire extends ArrayList<Item>{
 
 
 		//MenuCompo
-		Item it_item = (new Item("montre", false, "item", null));
+		Item it_item = (new Item("Montre", false, "item", null));
 		Item it_block = (new Item("dirt", false, "block", null));
 		Item it_outil = (new Item("epee_diamant", false, "outil", null));
 		Item it_minerai = (new Item("diamant", false, "minerai", null));
