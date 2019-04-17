@@ -1,5 +1,4 @@
 import java.io.InputStream;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -23,4 +22,15 @@ public class Item extends ImageView{
 		this.setFitHeight(ti);
 		this.setFitWidth(ti);
 	}
+	
+	@Override
+	public Item clone() {
+		return new Item(
+				this.libelle,
+				this.primary,
+				this.typ,
+				this.craft
+			);
+	}
 }
+
