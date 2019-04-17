@@ -75,30 +75,29 @@ public class Repertoire{
 			{rep.get(0),rep.get(11),rep.get(0)},
 			{rep.get(11),rep.get(0),rep.get(0)}
 		})));
-		rep.put(14, new Item("Cisailles", false, "item", new Craft(new Item[][] {
-			{rep.get(0),rep.get(0),rep.get(0)},
-			{rep.get(0),rep.get(11),rep.get(0)},
-			{rep.get(11),rep.get(0),rep.get(0)}
-		})));
-		rep.put(15, new Item("Baton", true, "minerai", new Craft(new Item[][] {
+		
+		rep.put(14, new Item("Baton", true, "minerai", new Craft(new Item[][] {
 			{rep.get(0),rep.get(0),rep.get(0)},
 			{rep.get(0),rep.get(0),rep.get(0)},
 			{rep.get(0),rep.get(0),rep.get(0)}
 		})));
+		
 		rep.put(15, new Item("piochepierre", true, "item", new Craft(new Item[][] {
 			{rep.get(11),rep.get(11),rep.get(11)},
-			{rep.get(0),rep.get(15),rep.get(0)},
-			{rep.get(0),rep.get(15),rep.get(0)}
+			{rep.get(0),rep.get(14),rep.get(0)},
+			{rep.get(0),rep.get(14),rep.get(0)}
 		})));
+		
 		rep.put(16, new Item("boisbouleau", false, "block", new Craft(new Item[][] {
-			{rep.get(1),rep.get(1),rep.get(1)},
-			{rep.get(1),rep.get(1),rep.get(1)},
-			{rep.get(1),rep.get(1),rep.get(1)}
+			{rep.get(0),rep.get(0),rep.get(0)},
+			{rep.get(0),rep.get(0),rep.get(0)},
+			{rep.get(0),rep.get(0),rep.get(0)}
 		})));
+		
 		rep.put(17, new Item("piochebasique", true, "item", new Craft(new Item[][] {
 			{rep.get(16),rep.get(16),rep.get(16)},
-			{rep.get(0),rep.get(15),rep.get(0)},
-			{rep.get(0),rep.get(15),rep.get(0)}
+			{rep.get(0),rep.get(14),rep.get(0)},
+			{rep.get(0),rep.get(14),rep.get(0)}
 		})));
 		
 		

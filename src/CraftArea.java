@@ -20,7 +20,7 @@ public class CraftArea {
 	
 	public GridPane tablearea = new GridPane();
 	
-	public Pane resultat = new Pane();
+	public FlowPane resultat = new FlowPane();
 	
 	ArrayList<Item> test = new ArrayList<Item>();
 	
@@ -88,20 +88,26 @@ public class CraftArea {
 			});
 			
 			tableslot.setOnMousePressed(event -> {
-				if(iv.it != null) {
+				if(iv.it != null && iv.it.libelle != "vide") {
 					tableslot.getChildren().remove(0);
 					tableslot.getChildren().add(iv.it);	
 					
 					Integer temp = Integer.parseInt(tableslot.getId().substring(9));
 					
 					c.matrice[temp%3][temp/3] = iv.it.libelle;
-					/*
+					for(int g = 0; g < 9; g++) {
+						System.out.println(c.matrice[g/3][g%3]);
+					}
+					
 					for(int t = 0; t < iv.r.rep.size(); t++){
 						if (iv.r.rep.get(t).craft != null && c.verification(iv.r.rep.get(t).craft.matrice) == true) {
-							System.out.println("ok");
+							resultat.getChildren().add(r.rep.get(t));
 						}
+						/*else {
+							System.out.println("non");
+						}*/
 					
-					}*/
+					}
 				}
 				
 				
@@ -119,6 +125,8 @@ public class CraftArea {
 		resultat.setId("resultat");
 		resultat.setLayoutX(700);
 		resultat.setLayoutY(135);
+		resultat.setAlignment(Pos.CENTER);
+		
 	}
 	
 }

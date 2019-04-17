@@ -7,9 +7,9 @@ public class Combinaison {
 	public Combinaison() {
 
 		matrice = new String[][] {
-				{"test","test","test"},
-				{"test","test","test"},
-				{"test","test","test"}
+				{"vide","vide","vide"},
+				{"vide","vide","vide"},
+				{"vide","vide","vide"}
 		};
 		
 	}
