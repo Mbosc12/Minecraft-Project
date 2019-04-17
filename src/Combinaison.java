@@ -22,4 +22,5 @@ public class Combinaison {
 		}
 		return true;
 	}
+
 }

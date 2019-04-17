@@ -13,7 +13,7 @@ public class Evenements{
 	public ArrayList<String> evntlist = new ArrayList<String>();
 	public Evenements() {
 		for(int i = 0; i < 20; i++) {
-			evntlist.add("Evenement "+ i + " : D�bloquez le block ...");
+			evntlist.add("Evènement "+ i + " : Débloquez le block ...");
 			Label l = new Label();
 			Label l1 = new Label();
 			if(i%2 == 0) {
