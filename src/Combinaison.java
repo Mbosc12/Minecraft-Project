@@ -29,7 +29,7 @@ public class Combinaison {
 		Combinaison b = new Combinaison();
 
 		for(int i = 0; i < 9; i++) {
-			System.out.println("Entrez le block que vous voulez mettre à la place :" + i);
+			System.out.println("Entrez le block que vous voulez mettre Ã  la place :" + i);
 	    	b.matrice[i/3][i%3] = myObj.nextLine();
 	    }
 	    

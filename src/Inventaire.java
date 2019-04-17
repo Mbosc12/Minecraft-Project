@@ -1,7 +1,15 @@
 import java.util.ArrayList;
+import java.util.List;
 
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 
@@ -33,15 +41,41 @@ public class Inventaire extends ArrayList<Item>{
 
 			FlowPane p = new FlowPane();
 			p.setPrefSize(48, 48);
-			//p.setId("inventoryslot");
 			p.setAlignment(Pos.CENTER);
 			p.getChildren().add(this.get(a));
 			p.setId("inventoryslot");
 
+
+			this.get(a).setOnDragDetected(new EventHandler <MouseEvent>() {
+				public void handle(MouseEvent event) {
+
+					/* allow any transfer mode */
+					Dragboard db = p.startDragAndDrop(TransferMode.ANY);
+
+					/* put a string on dragboard */
+					ClipboardContent content = new ClipboardContent();
+					content.putString(it.libelle);
+					db.setContent(content);
+
+					event.consume();
+				}
+			});
+
+
+			this.get(a).setOnDragEntered(new EventHandler <DragEvent>() {
+				public void handle(DragEvent event) {
+					/* the drag-and-drop gesture entered the target */
+					System.out.println("onDragEntered");
+					
+				}
+			});
+
+
 			this.get(a).setOnMousePressed(event -> {
 
-				System.out.println("Item ID :  INV -> " + ((Item) event.getSource()));
-				it = ((Item) event.getSource());
+				//System.out.println("Item ID :  INV -> " + ((Item) event.getSource()));
+				this.it = ((Item) event.getSource()).clone();
+
 			});
 
 			inventorygrid.add(p, a%16, a/16);
@@ -72,7 +106,7 @@ public class Inventaire extends ArrayList<Item>{
 
 
 		//MenuCompo
-		Item it_item = (new Item("montre", false, "item", null));
+		Item it_item = (new Item("Montre", false, "item", null));
 		Item it_block = (new Item("dirt", false, "block", null));
 		Item it_outil = (new Item("epee_diamant", false, "outil", null));
 		Item it_minerai = (new Item("diamant", false, "minerai", null));
