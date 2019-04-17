@@ -5,7 +5,6 @@ import javafx.stage.Stage;
 
 public class Vue extends Application{
 	
-	public Inventaire invcl = new Inventaire();
 	public Evenements evntcl = new Evenements();
 	public CraftArea craftcl = new CraftArea();
 	
@@ -31,9 +30,9 @@ public class Vue extends Application{
 		root.getChildren().add(craftcl.resultat);
 		root.getChildren().add(evntcl.evnts);
 		
-		root.getChildren().add(invcl.inventoryarea);
-		root.getChildren().add(invcl.menuarea);
-		root.getChildren().add(invcl.inventorygrid);
+		root.getChildren().add(craftcl.iv.inventoryarea);
+		root.getChildren().add(craftcl.iv.menuarea);
+		root.getChildren().add(craftcl.iv.inventorygrid);
 		primaryStage.show();
 	}
 	

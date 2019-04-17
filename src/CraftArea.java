@@ -1,3 +1,4 @@
+import java.awt.Event;
 import java.util.ArrayList;
 
 import javafx.geometry.Insets;
@@ -8,7 +9,9 @@ import javafx.scene.layout.Pane;
 
 public class CraftArea {
 
+	Repertoire r = new Repertoire();
 	Inventaire iv = new Inventaire();
+	Combinaison c = new Combinaison();
 	
 	public FlowPane craftarea = new FlowPane();
 	
@@ -54,8 +57,24 @@ public class CraftArea {
 			tableslot.getChildren().add(test.get(i));
 			
 			tableslot.setOnMousePressed(event -> {
-				System.out.println(iv.it);
-				tableslot.getChildren().add(iv.get(0));
+				if(iv.it != null) {
+					tableslot.getChildren().remove(0);
+					tableslot.getChildren().add(iv.it);	
+					
+					Integer temp = Integer.parseInt(tableslot.getId().substring(9));
+					
+					c.matrice[temp%3][temp/3] = iv.it.libelle;
+					/*
+					for(int t = 0; t < iv.r.rep.size(); t++){
+						if (iv.r.rep.get(t).craft != null && c.verification(iv.r.rep.get(t).craft.matrice) == true) {
+							System.out.println("ok");
+						}
+					
+					}*/
+				}
+				
+				
+				iv.it = new Item("vide", false, null, null);
 			});
 			
 			tablearea.add(tableslot, i/3, i%3);

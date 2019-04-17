@@ -7,6 +7,8 @@ import javafx.scene.layout.GridPane;
 
 public class Inventaire extends ArrayList<Item>{
 
+	public Repertoire r = new Repertoire();
+	
 	public FlowPane inventoryarea = new FlowPane();
 
 	public GridPane inventorygrid = new GridPane();
@@ -24,12 +26,11 @@ public class Inventaire extends ArrayList<Item>{
 		super();
 
 		for(int a=0; a < 48; a++) {
-			if(a == 0) {
-				this.add(new Item("diamant", false, "minerai", null));
+			for(int b = 0; b < r.rep.size(); b++) {
+				this.add(r.rep.get(b));
 			}
-			else {
-				this.add(new Item("dirt", false, "block", null));	
-			}
+			
+			this.add((this.get(a)));
 
 			FlowPane p = new FlowPane();
 			p.setPrefSize(48, 48);
@@ -40,8 +41,9 @@ public class Inventaire extends ArrayList<Item>{
 
 			this.get(a).setOnMousePressed(event -> {
 
-				System.out.println("Item ID :  INV -> " + ((Item) event.getSource()));
-				it = ((Item) event.getSource());
+				//System.out.println("Item ID :  INV -> " + ((Item) event.getSource()));
+				this.it = ((Item) event.getSource()).clone();
+				
 			});
 
 			inventorygrid.add(p, a%16, a/16);
@@ -72,7 +74,7 @@ public class Inventaire extends ArrayList<Item>{
 
 
 		//MenuCompo
-		Item it_item = (new Item("montre", false, "item", null));
+		Item it_item = (new Item("Montre", false, "item", null));
 		Item it_block = (new Item("dirt", false, "block", null));
 		Item it_outil = (new Item("epee_diamant", false, "outil", null));
 		Item it_minerai = (new Item("diamant", false, "minerai", null));
