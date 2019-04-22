@@ -1,14 +1,9 @@
-import java.awt.Event;
 import java.util.ArrayList;
-
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 
 public class CraftArea {
 
@@ -44,6 +39,7 @@ public class CraftArea {
 		craftarea.setPadding(new Insets(0, 0, 0, 170));
 		
 		
+		
 		//Table
 		
 		tablearea.setPrefSize(244, 244);
@@ -59,22 +55,15 @@ public class CraftArea {
 			tableslot.setAlignment(Pos.CENTER);
 			tableslot.getChildren().add(test.get(i));
 			
-			tableslot.setOnDragOver(new EventHandler <DragEvent>() {
-				public void handle(DragEvent event) {
-					/* accept it only if it is  not dragged from the same node 
-					 * and if it has a string data */
+			tableslot.setOnDragOver(event -> {
 					if (event.getGestureSource() != tableslot && event.getDragboard().hasString()) {
-						/* allow for both copying and moving, whatever user chooses */
 						event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
 					}
-
 					event.consume();
 				}
-			});
+			);
 			
-			tableslot.setOnDragDropped(new EventHandler <DragEvent>() {
-				public void handle(DragEvent event) {
-					/* show to the user that it is an actual gesture target */
+			tableslot.setOnDragDropped(event -> {
 					if (event.getGestureSource() != tableslot && event.getDragboard().hasString()) {
 						if(iv.it != null) {
 							tableslot.getChildren().remove(0);
@@ -82,10 +71,9 @@ public class CraftArea {
 						}
 						iv.it = new Item("vide", false, null, null);
 					}
-
 					event.consume();
 				}
-			});
+			);
 			
 			tableslot.setOnMousePressed(event -> {
 				if(iv.it != null && iv.it.libelle != "vide") {
@@ -126,6 +114,7 @@ public class CraftArea {
 		resultat.setLayoutX(700);
 		resultat.setLayoutY(135);
 		resultat.setAlignment(Pos.CENTER);
+		
 		
 	}
 	

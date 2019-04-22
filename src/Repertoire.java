@@ -88,7 +88,7 @@ public class Repertoire{
 			{rep.get(0),rep.get(14),rep.get(0)}
 		})));
 		
-		rep.put(16, new Item("boisbouleau", false, "block", new Craft(new Item[][] {
+		rep.put(16, new Item("bois_de_bouleau", false, "block", new Craft(new Item[][] {
 			{rep.get(0),rep.get(0),rep.get(0)},
 			{rep.get(0),rep.get(0),rep.get(0)},
 			{rep.get(0),rep.get(0),rep.get(0)}

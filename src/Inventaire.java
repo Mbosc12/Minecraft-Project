@@ -1,14 +1,9 @@
 import java.util.ArrayList;
-import java.util.List;
-
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -16,7 +11,7 @@ import javafx.scene.layout.GridPane;
 public class Inventaire extends ArrayList<Item>{
 
 	public Repertoire r = new Repertoire();
-	
+
 	public FlowPane inventoryarea = new FlowPane();
 
 	public GridPane inventorygrid = new GridPane();
@@ -37,7 +32,7 @@ public class Inventaire extends ArrayList<Item>{
 			for(int b = 0; b < r.rep.size(); b++) {
 				this.add(r.rep.get(b));
 			}
-			
+
 			this.add((this.get(a)));
 
 			FlowPane p = new FlowPane();
@@ -47,33 +42,22 @@ public class Inventaire extends ArrayList<Item>{
 			p.setId("inventoryslot");
 
 
-			this.get(a).setOnDragDetected(new EventHandler <MouseEvent>() {
-				public void handle(MouseEvent event) {
+			this.get(a).setOnDragDetected(event -> {
+				/* allow any transfer mode */
+				Dragboard db = p.startDragAndDrop(TransferMode.ANY);
+				
+				/* put a string on dragboard */
+				ClipboardContent content = new ClipboardContent();
+				content.putString(it.libelle);
+				content.putImage(new Image("/images/" + it.libelle + ".png"));
+				
+				db.setContent(content);
 
-					/* allow any transfer mode */
-					Dragboard db = p.startDragAndDrop(TransferMode.ANY);
-
-					/* put a string on dragboard */
-					ClipboardContent content = new ClipboardContent();
-					content.putString(it.libelle);
-					db.setContent(content);
-
-					event.consume();
-				}
-			});
-
-
-			this.get(a).setOnDragEntered(new EventHandler <DragEvent>() {
-				public void handle(DragEvent event) {
-					/* the drag-and-drop gesture entered the target */
-					System.out.println("onDragEntered");
-					
-				}
-			});
-
+				event.consume();
+			}
+					);
 
 			this.get(a).setOnMousePressed(event -> {
-
 				//System.out.println("Item ID :  INV -> " + ((Item) event.getSource()));
 				this.it = ((Item) event.getSource()).clone();
 			});
@@ -81,6 +65,7 @@ public class Inventaire extends ArrayList<Item>{
 			inventorygrid.add(p, a%16, a/16);
 
 		}
+		
 
 
 		//Partie inventaire --------------------------------------
@@ -103,6 +88,7 @@ public class Inventaire extends ArrayList<Item>{
 		menuarea.setMargin(menuminerais, new Insets(0, 12, 0, 12));
 
 		menuarea.setAlignment(Pos.CENTER);
+		
 
 
 		//MenuCompo
@@ -115,21 +101,37 @@ public class Inventaire extends ArrayList<Item>{
 		menuitems.setId("menuitems");
 		menuitems.setAlignment(Pos.CENTER);
 		menuitems.getChildren().add(it_item);
+		menuitems.setOnMouseClicked(event -> {
+			//Tri pour items
+			
+		});
 
 		menublocks.setPrefSize(75, 50);
 		menublocks.setAlignment(Pos.CENTER);
 		menublocks.setId("menublocks");
 		menublocks.getChildren().add(it_block);
+		menublocks.setOnMouseClicked(event -> {
+			//Tri pour blocks
+			
+		});
 
 		menuoutils.setPrefSize(75, 50);
 		menuoutils.setAlignment(Pos.CENTER);
 		menuoutils.setId("menuoutils");
 		menuoutils.getChildren().add(it_outil);
+		menuoutils.setOnMouseClicked(event -> {
+			//Tri pour outils
+			
+		});
 
 		menuminerais.setPrefSize(75, 50);
 		menuminerais.setAlignment(Pos.CENTER);
 		menuminerais.setId("menuminerais");
 		menuminerais.getChildren().add(it_minerai);
+		menuminerais.setOnMouseClicked(event -> {
+			//Tri pour minerais
+			
+		});
 
 
 		//On les ajoutes en tant qu'enfant de l'Area
@@ -144,5 +146,6 @@ public class Inventaire extends ArrayList<Item>{
 		inventorygrid.setId("inventorygrid");
 		inventorygrid.setLayoutX(56);
 		inventorygrid.setLayoutY(435);
+		
 	}
 }
