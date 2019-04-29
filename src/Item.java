@@ -21,6 +21,7 @@ public class Item extends ImageView{
 		this.setImage(new Image(input));
 		this.setFitHeight(ti);
 		this.setFitWidth(ti);
+		
 	}
 	
 	@Override

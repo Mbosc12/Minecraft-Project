@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javafx.event.EventHandler;
@@ -23,11 +25,10 @@ public class Inventaire extends ArrayList<Item>{
 
 	public FlowPane menuarea = new FlowPane();
 
+	public FlowPane menuminerais = new FlowPane();
 	public FlowPane menublocks = new FlowPane();
 	public FlowPane menuitems = new FlowPane();
 	public FlowPane menuoutils = new FlowPane();
-	public FlowPane menuminerais = new FlowPane();
-
 	Item it;
 
 	public Inventaire() {		
@@ -106,8 +107,8 @@ public class Inventaire extends ArrayList<Item>{
 
 
 		//MenuCompo
-		Item it_item = (new Item("Montre", false, "item", null));
-		Item it_block = (new Item("dirt", false, "block", null));
+		Item it_item = (new Item("montre", false, "item", null));
+		Item it_block = (new Item("terre", false, "block", null));
 		Item it_outil = (new Item("epee_diamant", false, "outil", null));
 		Item it_minerai = (new Item("diamant", false, "minerai", null));
 
@@ -115,22 +116,61 @@ public class Inventaire extends ArrayList<Item>{
 		menuitems.setId("menuitems");
 		menuitems.setAlignment(Pos.CENTER);
 		menuitems.getChildren().add(it_item);
+		menuitems.setOnMousePressed(event -> {
+			for(int i = 0; i < this.size(); i++) {
+				if(this.get(i).typ != "item") {
+					this.get(i).setVisible(false);
+				}
+				else {
+					this.get(i).setVisible(true);
+				}
+			}
+		});
 
 		menublocks.setPrefSize(75, 50);
 		menublocks.setAlignment(Pos.CENTER);
 		menublocks.setId("menublocks");
 		menublocks.getChildren().add(it_block);
-
+		menublocks.setOnMousePressed(event -> {
+			for(int i = 0; i < this.size(); i++) {
+				if(this.get(i).typ != "block") {
+					this.get(i).setVisible(false);
+				}
+				else {
+					this.get(i).setVisible(true);
+				}
+			}
+		});
+		
 		menuoutils.setPrefSize(75, 50);
 		menuoutils.setAlignment(Pos.CENTER);
 		menuoutils.setId("menuoutils");
 		menuoutils.getChildren().add(it_outil);
-
+		menuoutils.setOnMousePressed(event -> {
+			for(int i = 0; i < this.size(); i++) {
+				if(this.get(i).typ != "outil") {
+					this.get(i).setVisible(false);
+				}
+				else {
+					this.get(i).setVisible(true);
+				}
+			}
+		});
+		
 		menuminerais.setPrefSize(75, 50);
 		menuminerais.setAlignment(Pos.CENTER);
 		menuminerais.setId("menuminerais");
 		menuminerais.getChildren().add(it_minerai);
-
+		menuminerais.setOnMousePressed(event -> {
+			for(int i = 0; i < this.size(); i++) {
+				if(this.get(i).typ != "minerai") {
+					this.get(i).setVisible(false);
+				}
+				else {
+					this.get(i).setVisible(true);
+				}
+			}
+		});
 
 		//On les ajoutes en tant qu'enfant de l'Area
 		menuarea.getChildren().add(menublocks);
