@@ -7,7 +7,7 @@ public class Repertoire{
 		
 		this.rep = new HashMap<Integer, Item>();
 		
-		rep.put(0, new Item("vide", true, null, null));
+		rep.put(0, new Item("vide", true, "block", null));
 		
 		rep.put(1, new Item("terre", true, "block", null));
 		
