@@ -4,42 +4,61 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
-public class Evenements{
+public class Evenements {
 
 
 	public ScrollPane evnts = new ScrollPane();
-	public GridPane t = new GridPane();
+	public GridPane gridevent = new GridPane();
 
-	public ArrayList<String> evntlist = new ArrayList<String>();
-
+	ArrayList<Label> eventlist = new ArrayList<Label>();
 	public Evenements() {
-		for(int i = 0; i < 20; i++) {
-			evntlist.add("Evenement "+ i + " : Debloquez le block ...");
-			Label l = new Label();
-			Label l1 = new Label();
+
+		
+		eventlist.add(new Label("Veuiller faire une table de craft !"));
+		eventlist.add(new Label("Veuiller faire une pioche avec votre bois !"));
+		eventlist.add(new Label("Utiliser la pioche en bois pour en faire une en pierre!"));
+		eventlist.add(new Label("Vous allez vite avoir besoin d'un coffre !"));
+		eventlist.add(new Label("Vous avez trouver du fer, vite faites un four !"));
+		eventlist.add(new Label("Vous devriez faire votre equipement en fer !"));
+		eventlist.add(new Label("Ne serait-ce pas du diamant ?"));
+		eventlist.add(new Label("Il vaudrait mieux se faire un abris !"));
+		eventlist.add(new Label("Amusez-vous, vous avez débloquer plusieurs items !"));
+		
+		for(int i = 0; i < eventlist.size(); i++) {
 			if(i%2 == 0) {
-				l.setText(evntlist.get(i));
-				l.setId("labelevent");
-				l.setPrefSize(280, 35);	
-				l.setAlignment(Pos.CENTER);	
+				eventlist.get(i).setId("labelevent");
 			}
 			else {
-				l1.setText(evntlist.get(i));
-				l1.setId("labelevent2");
-				l1.setPrefSize(280, 35);
-				l1.setAlignment(Pos.CENTER);		
+				eventlist.get(i).setId("labelevent2");
 			}
-			t.add(l, 0, i);
-			t.add(l1, 0, i);
-			t.setVgap(1);
+			eventlist.get(i).setPrefSize(280, 40);	
+			eventlist.get(i).setAlignment(Pos.CENTER);
+			
+			gridevent.add(eventlist.get(i), 0, i);
+			gridevent.setVgap(1);	
 		}
+
 		evnts.setPannable(true);
-		evnts.setContent(t);
+		evnts.setContent(gridevent);
 		evnts.setId("evnts");
-		evnts.setPrefSize(300, 350);
-		
-		
+		evnts.setPrefSize(300, 355);
+
+
 	}
+
+	public void estverif(int i, boolean b) {
+		if(b == true) {
+			if(i%2 == 0) {
+				this.eventlist.get(i).setId("accompli2");
+				this.eventlist.get(i).setTextFill(Color.WHITE);
+			}
+			else {
+				this.eventlist.get(i).setId("accompli");
+			}
+		}
+	}
+	
 
 }
